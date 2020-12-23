@@ -1,1 +1,1 @@
-# github_and_twitter_connections
+# Github and Twitter Connections
