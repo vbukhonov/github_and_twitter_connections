@@ -124,3 +124,6 @@ STATIC_URL = '/static/'
 # Credentials which are used to access Twitter API with OAuth 2
 TWITTER_CONSUMER_KEY = os.getenv("TWITTER_CONSUMER_KEY")
 TWITTER_CONSUMER_SECRET = os.getenv("TWITTER_CONSUMER_SECRET")
+
+# GitHub OAuth token
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
