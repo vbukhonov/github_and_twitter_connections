@@ -66,7 +66,7 @@ def realtime(request, dev_1_id, dev_2_id):
         dev_1=dev_1,
         dev_2=dev_2,
         connected=connected,
-        common_orgs=json.dumps(common_orgs)
+        common_organizations=json.dumps(common_orgs)
     )
     return JsonResponse(result)
 
