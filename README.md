@@ -82,4 +82,4 @@ This is a simple Django app, so the steps are the following:
    5. DJANGO_SETTINGS_MODULE
 4. Run `python manage.py runserver` to run the dev server.
 
-There is also Docker files which can be used to start app in the container.
+There are also Docker files which can be used to start app in the container.
