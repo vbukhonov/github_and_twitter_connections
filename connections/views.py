@@ -72,4 +72,37 @@ def realtime(request, dev_1_id, dev_2_id):
 
 
 def register(request, dev_1_id, dev_2_id):
-    pass
+    errors = []
+    try:
+        dev_1 = ConnectedDev.objects.get(pk=dev_1_id)
+    except ConnectedDev.DoesNotExist:
+        errors.append("ID {} is not correct".format(dev_1_id))
+    try:
+        dev_2 = ConnectedDev.objects.get(pk=dev_2_id)
+    except ConnectedDev.DoesNotExist:
+        errors.append("ID {} is not correct".format(dev_2_id))
+
+    if errors:
+        return JsonResponse({"errors": errors})
+
+    records = RequestRecord.objects.filter(
+        dev_1=dev_1,
+        dev_2=dev_2
+    ).order_by(
+        "registered_at"
+    ).values_list(
+        "registered_at",
+        "connected",
+        "common_organizations",
+        named=True
+    )
+    result = []
+    for record in records:
+        result_record = {
+            "registered_at": record["registered_at"],
+            "connected": record["connected"],
+        }
+        if record["common_organizations"] != "[]":
+            result_record["common_organizations"] = record["common_organizations"]
+        result.append(result_record)
+    return JsonResponse(result)
