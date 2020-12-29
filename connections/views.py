@@ -11,6 +11,13 @@ from connections.models import ConnectedDev, RequestRecord
 
 
 def realtime(request, dev_1_id, dev_2_id):
+    """
+    This function returns whether two “developers” are fully connected or not.
+    Given a pair of developer handles they are considered connected if:
+        ● They follow each other on Twitter.
+        ● They have at least a Github organization in common.
+    Assume that people having the same handle both in Twitter and Github are actually the same person.
+    """
     errors = []
     # Create GitHub instance using GitHub token.
     try:
@@ -72,6 +79,9 @@ def realtime(request, dev_1_id, dev_2_id):
 
 
 def register(request, dev_1_id, dev_2_id):
+    """
+    This function returns all the related information from previous requests to the real-time endpoint.
+    """
     errors = []
     try:
         dev_1 = ConnectedDev.objects.get(pk=dev_1_id)
